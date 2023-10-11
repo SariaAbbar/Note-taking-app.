@@ -3,6 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <title>notes App</title>
+
+
+
+
+
+
+    <!-- the styling -->
     <style>
       body {
         margin: 0;
@@ -127,14 +134,14 @@
         width: 100%;
         height: 100%;
         overflow: auto;
-        background-color: rgb(100, 58, 58);
+        background-color:#EF9595;
       }
 
       .modal-content {
-        background-color: rgb(140, 58, 58);
+        background-color: #EFB495;
         margin: 15% auto;
         padding: 20px;
-        border: 9px solid grey;
+        border: 9px solid #EBEF95;
         width: 30%;
         text-align: center;
       }
@@ -155,6 +162,12 @@
       }
     </style>
   </head>
+
+
+
+
+
+<!-- the modal popub window that ask the user to put his name and say welcome to him (the scripting is below) -->
   <body>
     <div id="modal">
       <div class="modal-content">
@@ -165,6 +178,13 @@
       </div>
     </div>
 
+
+
+
+
+
+
+<!-- the header that have the head of the notes  -->
     <div class="header">
       <h1><span>N</span>ote <span>A</span>pp</h1>
       <h2 id="welcome"></h2>
@@ -179,6 +199,7 @@
           style="color: gray"
           required
         />
+        <!-- the inputs field and the search field of colors -->
         <select id="search" name="note_color">
           <option value="Yellow">Yellow</option>
           <option value="Blue">Blue</option>
@@ -188,10 +209,11 @@
           <option value="Orange">Orange</option>
           <option value="Brown">Brown</option>
           <option value="Grey">Grey</option>
+          <!-- the submit button -->
         </select>
         <button type="submit" id="button">Add Note</button>
       </form>
-
+      <!-- search field and its button -->
       <form action="/search">
         <input
           id="search"
@@ -203,14 +225,22 @@
         <button type="submit" id="button">Search</button>
       </form>
 
+      <!-- the clear button -->
       <form action="/clear_all" method="get">
         <button id="button">Clear</button>
       </form>
     </div>
 
+
+
+
+
+
+    <!-- the scripting  -->
     <script>
       let userName = localStorage.getItem("name");
-      
+      //function that take the username if it exist and say welcome back to him
+      // if its dont exist say just welcome and his name  
       function sayWelcome(userName, isNewUser){
         let welcome =document.getElementById("welcome")
         const newWelcome = document.createElement('p');
@@ -223,17 +253,17 @@
         // If it's not, show the modal dialog asking for the user's name
         let modal = document.getElementById("modal");
         modal.style.display = "block";
-
+        // When clicking on 'OK', save the name in Local Storage and hide the modal
         let saveBtn = document.getElementById("saveBtn");
 
         // Save the user's name in the local storage and close the modal when the Save button is clicked
         saveBtn.addEventListener("click", function () {
           let nameInput = document.getElementById("nameInput");
+          // if his name inside the local storage bring it and put welcome and the name
           if (nameInput.value) {
             localStorage.setItem("name", nameInput.value);
             userName = nameInput.value;
             sayWelcome(userName, true);
-            //alert("Welcome, " + userName + " !");
             modal.style.display = "none";
           }
         });
